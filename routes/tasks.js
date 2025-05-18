@@ -1,0 +1,43 @@
+const express = require('express');
+const router = express.Router();
+const { check } = require('express-validator');
+const taskController = require('../controllers/taskController');
+const auth = require('../middleware/auth');
+
+
+//    Get all tasks (filtered by query params)
+//   Private
+router.get('/', auth, taskController.getTasks);
+
+
+//    Get task by ID
+
+router.get('/:id', auth, taskController.getTaskById);
+
+
+//   Create a task
+
+router.post(
+  '/',
+  [
+    auth,
+    [
+      check('title', 'Title is required').not().isEmpty(),
+      check('description', 'Description is required').not().isEmpty(),
+      check('project', 'Project is required').not().isEmpty()
+    ]
+  ],
+  taskController.createTask
+);
+
+
+//    Update task
+//   Private
+router.put('/:id', auth, taskController.updateTask);
+
+
+//    Delete task
+//  Private
+router.delete('/:id', auth, taskController.deleteTask);
+
+module.exports = router;
