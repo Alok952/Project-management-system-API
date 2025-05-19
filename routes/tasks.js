@@ -12,13 +12,13 @@ router.get('/', auth, taskController.getTasks);
 
 //    Get task by ID
 
-router.get('/:id', auth, taskController.getTaskById);
+router.get('/taskById/:id', auth, taskController.getTaskById);
 
 
 //   Create a task
 
 router.post(
-  '/',
+  '/assignTask',
   [
     auth,
     [
@@ -33,11 +33,11 @@ router.post(
 
 //    Update task
 //   Private
-router.put('/:id', auth, taskController.updateTask);
+router.put('/update/:id',  auth,taskController.updateTask);
 
 
 //    Delete task
 //  Private
-router.delete('/:id', auth, taskController.deleteTask);
+router.delete('/deleteTask/:id', auth, taskController.deleteTask);
 
 module.exports = router;

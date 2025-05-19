@@ -87,7 +87,7 @@ exports.createProject = async (req, res) => {
     name,
     description,
     manager,
-    team,
+    team, 
     status,
     startDate,
     endDate
@@ -117,7 +117,7 @@ exports.createProject = async (req, res) => {
       .populate('manager', 'name email')
       .populate('team', 'name email');
 
-    res.json(populatedTask);
+    res.json(populatedProject);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

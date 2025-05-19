@@ -5,20 +5,9 @@ const userController = require('../controllers/userController');
 const auth = require('../middleware/auth');
 const authorize = require('../middleware/roles');
 
-//   GET api/users
-
-router.get('/', auth, authorize('admin', 'manager'), userController.getUsers);
-
-
-//     Get user by ID
-//   Private (Admin/Manager/Self)
-router.get('/:id', auth, userController.getUserById);
-
-
-//    Update user
-//  Private (Admin/Self)
+// Update user — Admin or Self
 router.put(
-  '/:id',
+  '/updateUser/:id',
   [
     auth,
     [
@@ -29,9 +18,13 @@ router.put(
   userController.updateUser
 );
 
+// Get user by ID — Admin/Manager/Self
+router.get('/user/:id', auth, userController.getUserById);
 
-//   Delete user
-//   Private (Admin/Self)
-router.delete('/:id', auth, userController.deleteUser);
+// Delete user — Admin or Self
+router.delete('/deleteUser/:id', auth, userController.deleteUser);
+
+// Get all users — Admin or Manager
+router.get('/allUsers', auth, authorize('admin', 'manager'), userController.getUsers);
 
 module.exports = router;

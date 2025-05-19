@@ -32,6 +32,6 @@ router.post(
 //   GET api/auth/me
 //    Get current user
 //   Private
-router.get('/me', authController.getAllUsers);
+router.get('/allUsers', authController.getAllUsers);
 
 module.exports= router;

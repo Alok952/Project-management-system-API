@@ -17,7 +17,7 @@ router.get('/:id', auth, projectController.getProjectById);
 //     Create a project
 //   Private (Admin/Manager)
 router.post(
-  '/',
+  '/assign',
   [
     auth,
     authorize('admin', 'manager'),
@@ -40,7 +40,7 @@ router.delete('/:id', auth, projectController.deleteProject);
 //     Add team member to project
 //   Private (Admin/Manager)
 router.post(
-  '/:id/team',
+  '/team/:id',
   [
     auth,
     [
