@@ -111,10 +111,10 @@ exports.login = async (req, res) => {
 
 //     Get current user
 //   Private
-exports.getCurrentUser = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
+    const users = await User.find().select('-password');
+    res.json(users);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
